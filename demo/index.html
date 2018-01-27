@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>casper-context-menu demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-button/paper-button.html">
+    <link rel="import" href="../../iron-icons/iron-icons.html">
+    <link rel="import" href="../casper-context-menu.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        .header {
+          display: flex;
+          align-items: center;
+          height: 32px;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic casper-context-menu demo</h3>
+      <demo-snippet>
+        <template>
+          <div class="header">
+            <paper-button raised onclick="openMenu(this)">Open Menu</paper-button><h4 id="typed">-<h4>
+          </div>
+          <casper-context-menu id="settings" no-overlap vertical-align="auto" horizontal-align="left">
+            <h1>Section 1 links</h1>
+            <casper-menu-item icon="icons:home" href="https://github.com/casper2020/casper-context-menu">View on Github</casper-menu-item>
+            <casper-menu-item icon="icons:cloud" href="http://cloudware.pt">Cloudware Site</casper-menu-item>
+            <casper-menu-item icon="visibility-off" separator disabled>Disabled a blue day</casper-menu-item>
+            <h1>Section 2 clicks</h1>
+            <casper-menu-item icon="icons:language" onclick="type('hello')">Type Hello</casper-menu-item>
+            <casper-menu-item icon="icons:pan-tool" onclick="type('World')">Type World</casper-menu-item>
+          </casper-context-menu>
+          <script>
+            function openMenu(element) {
+              settings.positionTarget = element;
+              settings.open();
+            }
+
+            function type(text) {
+              typed.textContent = "Menu types "+text;
+            }
+          </script>
+        </template>
+      </demo-snippet>
+    </div>  
+    <script>
+      document.addEventListener('WebComponentsReady', function() {
+        document.addEventListener();
+      });
+  </script>
+  </body>
+</html>

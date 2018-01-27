@@ -1,0 +1,70 @@
+<!--
+  - Copyright (c) 2016 Neto Ranito & Seabra LDA. All rights reserved.
+  -
+  - This file is part of casper-context-menu.
+  -
+  - casper-context-menu is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Affero General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  -
+  - casper-context-menu  is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU Affero General Public License
+  - along with casper-context-menu.  If not, see <http://www.gnu.org/licenses/>.
+  -
+ -->
+
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-fit-behavior/iron-fit-behavior.html">
+<link rel="import" href="../iron-overlay-behavior/iron-overlay-behavior.html">
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+
+<link rel="import" href="casper-menu-item.html">
+
+<dom-module id="casper-context-menu">
+  <template>
+    <style>
+      :host {
+        background: var(--primary-background-color, white);
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.24) -2px 5px 12px 0px, rgba(0, 0, 0, 0.12) 0px 0px 12px 0px;
+      }
+
+      ::slotted(h1) {
+        color: var(--primary-color);
+        font-size: 13px;
+        padding: 6px 12px 6px 12px;
+        margin: 0px;
+        text-transform: uppercase;
+        cursor: default;
+      }
+
+      ::slotted(h1:focus) {
+        outline: none;
+      }
+
+      paper-listbox {
+        color: color: var(--primary-text-color, gray);
+        border-radius: 6px;
+      }
+
+    </style>
+    <paper-listbox>
+      <slot></slot>
+    </paper-listbox>
+  </template>
+  <script>
+  	class CasperDropMenu extends Polymer.mixinBehaviors([Polymer.IronOverlayBehavior, Polymer.IronFitBehavior], Polymer.Element) {
+
+  		static get is () {
+  			return 'casper-context-menu';
+  		}
+
+		}
+		customElements.define(CasperDropMenu.is, CasperDropMenu);
+  </script>
+</dom-module>

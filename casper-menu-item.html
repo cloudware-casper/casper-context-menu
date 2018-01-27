@@ -1,0 +1,84 @@
+<!--
+  - Copyright (c) 2016 Neto Ranito & Seabra LDA. All rights reserved.
+  -
+  - This file is part of casper-common-ui.
+  -
+  - casper-common-ui is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Affero General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  -
+  - casper-common-ui  is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU Affero General Public License
+  - along with casper-common-ui.  If not, see <http://www.gnu.org/licenses/>.
+  -
+ -->
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
+<dom-module id="casper-menu-item">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        padding: 6px 12px 6px 12px;
+        margin: 0px;
+        font-weight: normal;
+        cursor: pointer;
+      }
+
+      :host(:hover) {
+        background-color: var(--dark-primary-color);
+        color: white;
+      }
+
+      :host(:focus) {
+        outline: 0;
+      }
+
+      :host([disabled]) {
+        color: #ccc;
+        pointer-events: none;
+      }
+
+      :host([hidden]) {
+        display: none;
+      }
+
+      :host([separator]) {
+        border-top: solid gray 1px;
+      }
+
+      iron-icon {
+        --iron-icon-height: 18px;
+        --iron-icon-width:  18px;
+        padding-right: 3px;
+      }
+
+    </style>
+    <iron-icon icon="[[icon]]"></iron-icon>
+    <slot></slot>
+  </template>
+  <script>
+    class CasperMenuItem extends Polymer.Element {
+      
+      static get is () {
+        return 'casper-menu-item';
+      }
+
+      static get properties () {
+        return {
+          icon: String
+        };
+      }
+
+    }
+    customElements.define(CasperMenuItem.is, CasperMenuItem);
+  </script>
+</dom-module>
