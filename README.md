@@ -7,7 +7,7 @@ Simple pop-up menu with an icon for each item. Section headers can be created wi
 
 <!---
 ```
-<custom-element-demo style="height: 200px">
+<custom-element-demo style="height: 400;">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../iron-icons/iron-icons.html">
