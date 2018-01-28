@@ -1,6 +1,21 @@
 {
   "name": "casper-context-menu",
   "description": "Simple pop-up menu",
+  "license": "AGPL-3.0-or-later",
+  "version": "0.1.0",
+  "authors": [
+    "Cloudware S.A."
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "menu",
+    "context"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:casper2020/casper-context-menu.git"
+  },
   "main": "casper-context-menu.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
