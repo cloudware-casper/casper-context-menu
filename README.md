@@ -7,7 +7,7 @@ Simple pop-up menu with an icon for each item. Section headers can be created wi
 
 <!---
 ```
-<custom-element-demo style="height: 400;">
+<custom-element-demo>
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../iron-icons/iron-icons.html">
@@ -15,31 +15,38 @@ Simple pop-up menu with an icon for each item. Section headers can be created wi
     <link rel="import" href="casper-context-menu.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">  
+    
         casper-context-menu, paper-button, h4  {
             font-family: 'Roboto', 'Noto', sans-serif;
             font-weight: normal;
             font-size: 14px;
-            -webkit-font-smoothing: antialiased;
+        }
+        paper-button, h4 {
+						height: 32px;
         }
         .header {
           display: flex;
-          align-items: center;
-          height: 32px;
+          align-items: start;
+          height: 250px;
         }
       </style>
-      <script>
+    </custom-style>  
+    <script>
       function type(text) {
         typed.textContent = "Menu typed "+text;
       }
+      function open(element) {
+        settings.positionTarget = element;
+        settings.open();
+      }
     </script>
-    </custom-style>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
 ```
 -->
 ```html
-<div class="header"><paper-button raised onclick="settings.open()">Open Menu</paper-button><h4 id="typed">-</h4></div>
+<div class="header"><paper-button raised onclick="open(this)">Open Menu</paper-button><h4 id="typed">-</h4></div>
 <casper-context-menu id="settings" no-overlap vertical-align="auto" horizontal-align="left">
   <h1>Section 1 links</h1>
   <casper-menu-item icon="icons:home" href="https://github.com/casper2020/casper-context-menu">Open Github repo</casper-menu-item>
