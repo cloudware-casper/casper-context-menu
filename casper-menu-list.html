@@ -1,0 +1,85 @@
+<!--
+  - Copyright (c) 2018 Cloudware S.A. All rights reserved.
+  -
+  - This file is part of casper-context-menu.
+  -
+  - casper-context-menu is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Affero General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  -
+  - casper-context-menu  is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU Affero General Public License
+  - along with casper-context-menu.  If not, see <http://www.gnu.org/licenses/>.
+  -
+ -->
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="casper-menu-list">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        align-items: left;
+        padding: 6px 12px 6px 12px;
+        margin: 0px;
+        font-weight: 600;
+        cursor: pointer;
+        color: var(--primary-color);
+      }
+
+      ::slotted(a){
+        color: green;
+      }
+
+      :host a {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+
+      :host(:hover), :host(:hover) a {
+        background-color: var(--dark-primary-color);
+        color: white;
+        text-decoration: none;
+      }
+
+      :host(:focus) {
+        outline: 0;
+      }
+
+      :host([disabled]) {
+        color: #ccc;
+        pointer-events: none;
+      }
+
+      :host([hidden]) {
+        display: none;
+      }
+
+      :host([separator]) {
+        border-top: solid gray 1px;
+      }
+
+    </style>
+    <slot></slot>
+  </template>
+  <script>
+    class CasperMenuList extends Polymer.Element {
+
+      static get is () {
+        return 'casper-menu-list';
+      }
+
+      static get properties () {
+        return {
+        };
+      }
+
+    }
+    customElements.define(CasperMenuList.is, CasperMenuList);
+  </script>
+</dom-module>
