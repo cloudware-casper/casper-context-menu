@@ -1,0 +1,110 @@
+<!--
+  - Copyright (c) 2018 Cloudware S.A. All rights reserved.
+  -
+  - This file is part of casper-context-menu.
+  -
+  - casper-context-menu is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Affero General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  -
+  - casper-context-menu  is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU Affero General Public License
+  - along with casper-context-menu.  If not, see <http://www.gnu.org/licenses/>.
+  -
+ -->
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="casper-simple-select">
+  <template>
+    <style>
+
+      :host {
+
+      }
+
+      iron-icon {
+        /* background-color: green; */
+      }
+
+      iron-icon {
+        --iron-icon-width: 14px;
+        --iron-icon-height: 12px;
+        --iron-icon-fill-color: var(--primary-color);
+      }
+
+      #inner_box > a {
+        font-weight: bold;
+        cursor: pointer;
+        color: var(--primary-color);
+      }
+
+      #inner_box:hover > a:hover{
+        color: var(--dark-primary-color);
+      }
+
+      #inner_box:hover a,
+      #inner_box:hover iron-icon {
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      #inner_box:hover iron-icon {
+        --iron-icon-fill-color: var(--dark-primary-color);
+      }
+
+      #slot_text {
+        line-height: 30px;
+        display: inline-block;
+        padding-right: 0px;
+      }
+    </style>
+
+    <span id="inner_box" >
+      <a id="slot_text" href="[[href]]" data-level="[[level]]"><slot></slot></a>
+      <iron-icon icon="toc-icons:expand-more">icon</iron-icon>
+      <casper-context-menu id="select_options" no-overlap vertical-align="auto" horizontal-align="auto">
+        <template is="dom-repeat" items="[[items]]" index-as="index">
+          <casper-menu-list on-click="customclick">
+            <a data-level="3" href="[[item.link]]">[[item.title]]</a>
+          </casper-menu-list>
+        </template>
+      </casper-context-menu>
+    </span>
+  </template>
+
+  <script>
+
+    class CasperSimpleSelect extends Polymer.mixinBehaviors([], Polymer.Element) {
+      static get is () {
+        return 'casper-simple-select';
+      }
+
+      static get properties () {
+        return {
+        }
+      }
+
+      customclick(e){
+        var level = Number(e.target.getAttribute("data-level"));
+        var text = e.target.text;
+        this.innerText = text;
+        this.$.select_options.close();
+      }
+
+      ready () {
+        super.ready();
+        this.$.slot_text.addEventListener('click',     e => this.$.select_options.open());
+        this.$.inner_box.addEventListener('mouseover', e => this.$.select_options.open());
+        this.$.inner_box.addEventListener('mouseout',  e => this.$.select_options.close());
+      }
+
+    }
+
+    window.customElements.define(CasperSimpleSelect.is, CasperSimpleSelect);
+  </script>
+</dom-module>
