@@ -36,7 +36,7 @@
 
       ::slotted(h1) {
         color: var(--primary-color);
-        font-size: 13px;
+        font-size: var(--default-header-size, 13px);
         padding: 6px 12px 6px 12px;
         margin: 0px;
         text-transform: uppercase;
@@ -48,7 +48,7 @@
       }
 
       paper-listbox {
-        color: color: var(--primary-text-color, gray);
+        /* color: var(--primary-text-color, gray); */
         border-radius: 6px;
       }
 
