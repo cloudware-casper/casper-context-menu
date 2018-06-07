@@ -70,7 +70,7 @@
       <casper-context-menu id="select_options" no-overlap vertical-align="auto" horizontal-align="auto">
         <template is="dom-repeat" items="[[items]]" index-as="index">
           <casper-menu-list on-click="customclick">
-            <a data-level="3" href="[[item.link]]">[[item.title]]</a>
+            <a data-level="3" href="[[item.link]]" data-remote$="[[item.remote]]">[[item.title]]</a>
           </casper-menu-list>
         </template>
       </casper-context-menu>
@@ -94,6 +94,11 @@
         var text = e.target.text;
         this.innerText = text;
         this.$.select_options.close();
+
+        if(e.target.getAttribute("data-remote") == "true"){
+          this.app._ajaxCall(e);
+          e.preventDefault();
+        }
       }
 
       ready () {
