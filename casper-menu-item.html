@@ -67,7 +67,7 @@
   </template>
   <script>
     class CasperMenuItem extends Polymer.Element {
-      
+
       static get is () {
         return 'casper-menu-item';
       }
@@ -79,6 +79,17 @@
         };
       }
 
+      ready () {
+        super.ready();
+        this.addEventListener('tap', e => this._onTap(e));
+      }
+
+      _onTap (event) {
+        if ( ! this.hasAttribute('data-remote') && this.hasAttribute('href') ) {
+          // window.location = this.getAttribute('href');
+          event.preventDefault();
+        }
+      }
     }
     customElements.define(CasperMenuItem.is, CasperMenuItem);
   </script>
