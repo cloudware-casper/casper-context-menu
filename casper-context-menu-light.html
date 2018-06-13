@@ -34,13 +34,33 @@
       }
 
       ::slotted(h1) {
-        background-color: red;
         display: block;
+        padding: 10px;
+        font-size: var(--default-header-size, 13px);
+        margin: 0;
+        line-height: var(--default-header-line-height);
+        color: var(--dark-primary-color);
+        text-transform: uppercase;
       }
 
       ::slotted(p) {
-        background-color: yellow;
         display: block;
+        text-decoration: none;
+        display: block;
+
+        padding: 6px 10px;
+        font-size: var(--default-font-size);
+        line-height: var(--default-line-height);
+        color: var(--default-font-color);
+      }
+
+      ::slotted(p):hover {
+        background: var(--dark-primary-color);
+        cursor: pointer;
+      }
+
+      ::slotted(p):hover a {
+        color: white;
       }
 
       ::slotted(iron-list){
@@ -63,8 +83,9 @@
       }
 
       _menu_clicked (e) {
-        if( e.target.text != undefined ){
-          this.parentElement.parentElement.querySelector("[slot=trigger] a").text = e.target.text;
+        if( e.target.textContent != undefined ){
+          this.parentElement.parentElement.querySelector("[slot=trigger] a").text = e.target.textContent;
+          this.parentElement.parentElement.$.list.close();
         }
       }
 		}
