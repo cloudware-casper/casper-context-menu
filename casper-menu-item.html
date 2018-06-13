@@ -86,7 +86,7 @@
 
       _onTap (event) {
         if ( ! this.hasAttribute('data-remote') && this.hasAttribute('href') ) {
-          // window.location = this.getAttribute('href');
+          window.location = this.getAttribute('href');
           event.preventDefault();
         }
       }
