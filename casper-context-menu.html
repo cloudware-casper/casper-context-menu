@@ -30,8 +30,9 @@
     <style>
       :host {
         background: var(--primary-background-color, white);
-        border-radius: 6px;
+        border-radius: var(--radius-primary, 6px);
         box-shadow: rgba(0, 0, 0, 0.24) -2px 5px 12px 0px, rgba(0, 0, 0, 0.12) 0px 0px 12px 0px;
+        overflow: hidden;
       }
 
       ::slotted(h1) {
@@ -49,7 +50,8 @@
 
       paper-listbox {
         /* color: var(--primary-text-color, gray); */
-        border-radius: 6px;
+        border-radius: var(--radius-primary, 6px);
+        padding: 0px;
       }
 
     </style>
