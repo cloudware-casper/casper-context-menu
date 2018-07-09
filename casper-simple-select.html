@@ -96,11 +96,6 @@
         this.$.select_options.close();
 
         this.app.$.main_menu.label_3_link = e.target.href;
-
-        if(e.target.getAttribute("data-remote") == "true"){
-          this.app._ajaxCall(e);
-          e.preventDefault();
-        }
       }
 
       ready () {
