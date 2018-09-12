@@ -79,13 +79,16 @@
 
       ready () {
         super.ready();
-        this.shadowRoot.querySelectorAll('slot').forEach(slot => slot.addEventListener('click', e => this._menu_clicked(e)))
+        // this.shadowRoot.querySelectorAll('slot').forEach(slot => slot.addEventListener('click', e => this._menu_clicked(e)))
       }
 
       _menu_clicked (e) {
         if( e.target.textContent != undefined ){
-          this.parentElement.parentElement.querySelector("[slot=trigger] a").text = e.target.textContent;
-          this.parentElement.parentElement.$.list.close();
+          var parent_element = this.parentElement.parentElement
+          if(parent_element.querySelector("[slot=trigger] a") != undefined){
+            parent_element.querySelector("[slot=trigger] a").text = e.target.textContent;
+          }
+          parent_element.$.list.close();
         }
       }
 		}

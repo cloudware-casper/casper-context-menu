@@ -57,9 +57,7 @@
     </div>
 
     <casper-overlay id="list" scroll-action="lock" no-overlap vertical-align="[[vertical_align]]" horizontal-align="[[horizontal_align]]">
-    <!-- <div id="list_slot"> -->
       <slot name="list"></slot>
-    <!-- </div> -->
     </casper-overlay>
   </template>
 
@@ -77,6 +75,9 @@
           },
           horizontal_align: {
             value: 'left'
+          },
+          closable: {
+            value: 'true' // close
           }
         }
       }
@@ -101,7 +102,14 @@
         //
         // this.$.list.addEventListener('mouseout',       e => this.$.list.close());
         // this.$.list.addEventListener('mouseover',      e => this.mouseover_trigger(e));
-        // this.$.list.addEventListener('click',          e => this.$.list.close());
+
+        if(this.closable != 'false'){
+          this.$.list.addEventListener('click',          e => this._mustClose(e));
+        }
+      }
+
+      _mustClose(e){
+        this.$.list.close();
       }
 
       connectedCallback () {
