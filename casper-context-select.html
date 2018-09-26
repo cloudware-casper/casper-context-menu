@@ -89,19 +89,15 @@
         this.$.list.close();
       }
 
-      mouseover_trigger (e) {
-        // this.$.list.fitInto = this;
-        this.$.list.open();
-      }
-
       ready () {
         super.ready();
-        this.$.trigger.addEventListener('click',      e => this.mouseover_trigger(e));
-        //this.$.trigger.addEventListener('mouseover',   e => this.mouseover_trigger(e));
-        //this.$.trigger.addEventListener('mouseout',    e => this.$.list.close());
-        //
-        // this.$.list.addEventListener('mouseout',       e => this.$.list.close());
-        // this.$.list.addEventListener('mouseover',      e => this.mouseover_trigger(e));
+
+        this.$.trigger.addEventListener('click',     e => this.$.list.open());
+        this.$.trigger.addEventListener('mouseover', e => this.$.list.open());
+        this.$.trigger.addEventListener('mouseout',  e => this.$.list.close());
+
+        this.$.list.addEventListener('mouseover', e => this.$.list.open());
+        this.$.list.addEventListener('mouseout',  e => this.$.list.close());
 
         if(this.closable != 'false'){
           this.$.list.addEventListener('click',          e => this._mustClose(e));
