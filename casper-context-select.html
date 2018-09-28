@@ -78,6 +78,9 @@
           },
           closable: {
             value: 'true' // close
+          },
+          opening: {
+            value: undefined
           }
         }
       }
@@ -89,18 +92,30 @@
         this.$.list.close();
       }
 
+      _openList(){
+        clearTimeout(this.opening);
+        this.$.list.open()
+      }
+
+      _delayHide(e){
+        this.opening = setTimeout(function(){
+          this.$.list.close();
+        }.bind(this), 300)
+      }
+
+
       ready () {
         super.ready();
 
-        this.$.trigger.addEventListener('click',     e => this.$.list.open());
-        this.$.trigger.addEventListener('mouseover', e => this.$.list.open());
-        this.$.trigger.addEventListener('mouseout',  e => this.$.list.close());
+        this.$.trigger.addEventListener('click',     e => this._openList());
+        this.$.trigger.addEventListener('mouseover', e => this._openList());
+        this.$.trigger.addEventListener('mouseout',  e => this._delayHide());
 
-        this.$.list.addEventListener('mouseover', e => this.$.list.open());
-        this.$.list.addEventListener('mouseout',  e => this.$.list.close());
+        this.$.list.addEventListener('mouseover',   e => this._openList());
+        this.$.list.addEventListener('mouseout',    e => this.$.list.close());
 
         if(this.closable != 'false'){
-          this.$.list.addEventListener('click',          e => this._mustClose(e));
+          this.$.list.addEventListener('click',     e => this._mustClose(e));
         }
       }
 
