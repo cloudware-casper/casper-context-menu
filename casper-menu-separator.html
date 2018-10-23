@@ -17,36 +17,28 @@
   - along with casper-context-menu.  If not, see <http://www.gnu.org/licenses/>.
   -
  -->
-
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../iron-fit-behavior/iron-fit-behavior.html">
-<link rel="import" href="../iron-overlay-behavior/iron-overlay-behavior.html">
-<link rel="import" href="../paper-listbox/paper-listbox.html">
 
-<link rel="import" href="casper-menu-item.html">
-<link rel="import" href="casper-menu-separator.html">
-
-<dom-module id="casper-context-menu">
+<dom-module id="casper-menu-separator">
   <template>
     <style>
       :host {
-        background: var(--primary-background-color, white);
-        border-radius: var(--radius-primary, 6px);
-        box-shadow: rgba(0, 0, 0, 0.24) -2px 5px 12px 0px, rgba(0, 0, 0, 0.12) 0px 0px 12px 0px;
+        /*background: var(--primary-background-color, white);*/
+        /*border-radius: var(--radius-primary, 6px);*/
+        /*box-shadow: rgba(0, 0, 0, 0.24) -2px 5px 12px 0px, rgba(0, 0, 0, 0.12) 0px 0px 12px 0px;*/
         overflow: hidden;
       }
 
-      ::slotted(h1) {
+      .inner {
         color: var(--primary-color);
-        font-size: var(--default-header-size, 13px);
+        font-size: 13px; /*var(--default-header-size, 13px);*/
         padding: 6px 12px 6px 12px;
         margin: 0px;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         cursor: default;
-      }
-
-      ::slotted(h1:focus) {
-        outline: none;
+        text-align: left;
+        background-color: #efefef;
+        font-weight: bold;
       }
 
       paper-listbox {
@@ -54,20 +46,30 @@
         border-radius: var(--radius-primary, 6px);
         padding: 0px;
       }
-
     </style>
-    <paper-listbox>
-      <slot></slot>
-    </paper-listbox>
+
+   
+    <div class="inner"><slot>---</slot></div>
+    
+  
   </template>
   <script>
-  	class CasperContextMenu extends Polymer.mixinBehaviors([Polymer.IronOverlayBehavior, Polymer.IronFitBehavior], Polymer.Element) {
+    class CasperMenuSeparator extends Polymer.Element {
 
-  		static get is () {
-  			return 'casper-context-menu';
-  		}
+      static get is () {
+        return 'casper-menu-separator';
+      }
 
-		}
-		customElements.define(CasperContextMenu.is, CasperContextMenu);
+      static get properties () {
+        return {
+        };
+      }
+
+      ready () {
+        super.ready();
+      }
+
+    }
+    customElements.define(CasperMenuSeparator.is, CasperMenuSeparator);
   </script>
 </dom-module>
