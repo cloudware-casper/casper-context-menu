@@ -82,6 +82,9 @@
       ready () {
         super.ready();
         this.addEventListener('tap', e => this._onTap(e));
+        if(this.icon === undefined) {
+          this.shadowRoot.querySelector("iron-icon").style.display = "none";
+        }
       }
 
       _onTap (event) {
