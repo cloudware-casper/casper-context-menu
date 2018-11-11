@@ -36,21 +36,7 @@
         overflow: hidden;
       }
 
-      ::slotted(h1) {
-        color: var(--primary-color);
-        font-size: var(--default-header-size, 13px);
-        padding: 6px 12px 6px 12px;
-        margin: 0px;
-        text-transform: uppercase;
-        cursor: default;
-      }
-
-      ::slotted(h1:focus) {
-        outline: none;
-      }
-
       paper-listbox {
-        /* color: var(--primary-text-color, gray); */
         border-radius: var(--radius-primary, 6px);
         padding: 0px;
       }
@@ -60,16 +46,34 @@
       <slot></slot>
     </paper-listbox>
   </template>
+
   <script>
-    "use strict";
+    'use strict';
 
-  	class CasperContextMenu extends Polymer.mixinBehaviors([Polymer.IronOverlayBehavior, Polymer.IronFitBehavior], Polymer.Element) {
+    class CasperContextMenu extends Polymer.mixinBehaviors([Polymer.IronOverlayBehavior, Polymer.IronFitBehavior], Polymer.Element) {
 
-  		static get is () {
-  			return 'casper-context-menu';
-  		}
+      static get is () {
+        return 'casper-context-menu';
+      }
 
-		}
-		customElements.define(CasperContextMenu.is, CasperContextMenu);
+      /**
+       * Install click listener to implememt auto close
+       */
+      ready () {
+        super.ready();
+        this.addEventListener('click', (e) => this._onTap(e));
+      }
+
+      /**
+       * Autohide the menu when it's clicked
+       *
+       * @param {Object} event the click event
+       */
+      _onTap (event) {
+        setTimeout((e) => this.close(), 0); // Use timeout to call close() outside of original event callstack
+      }
+
+    }
+    customElements.define(CasperContextMenu.is, CasperContextMenu);
   </script>
 </dom-module>

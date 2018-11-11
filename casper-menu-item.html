@@ -65,7 +65,10 @@
     <iron-icon icon="[[icon]]"></iron-icon>
     <slot></slot>
   </template>
+
   <script>
+    'use strict';
+
     class CasperMenuItem extends Polymer.Element {
 
       static get is () {
@@ -81,16 +84,8 @@
 
       ready () {
         super.ready();
-        this.addEventListener('tap', e => this._onTap(e));
-        if(this.icon === undefined) {
+        if ( this.icon === undefined ) {
           this.shadowRoot.querySelector("iron-icon").style.display = "none";
-        }
-      }
-
-      _onTap (event) {
-        if ( ! this.hasAttribute('data-remote') && this.hasAttribute('href') ) {
-          // window.location = this.getAttribute('href');
-          // event.preventDefault();
         }
       }
     }
