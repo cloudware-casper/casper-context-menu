@@ -55,11 +55,25 @@
         border-top: solid gray 1px;
       }
 
-      iron-icon {
+      iron-icon, ::slotted(a iron-icon) {
         --iron-icon-height: 18px;
         --iron-icon-width:  18px;
         padding-right: 3px;
       }
+
+      ::slotted(a) {
+        color: var(--lumo-body-text-color);
+        text-decoration: none;
+      }
+
+      ::slotted(a):hover {
+        text-decoration: none;
+      }
+
+      ::slotted(a):visited {
+        text-decoration: none;
+      }
+
 
     </style>
     <iron-icon icon="[[icon]]"></iron-icon>
