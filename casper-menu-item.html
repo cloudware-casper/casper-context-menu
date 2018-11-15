@@ -55,12 +55,12 @@
         border-top: solid gray 1px;
       }
 
-      iron-icon, ::slotted(a iron-icon) {
+      iron-icon {
         --iron-icon-height: 18px;
         --iron-icon-width:  18px;
         padding-right: 3px;
       }
-
+      
       ::slotted(a) {
         color: var(--lumo-body-text-color);
         text-decoration: none;
@@ -76,7 +76,7 @@
 
 
     </style>
-    <iron-icon icon="[[icon]]"></iron-icon>
+    <iron-icon id="icon" icon="[[icon]]"></iron-icon>
     <slot></slot>
   </template>
 
@@ -99,9 +99,18 @@
       ready () {
         super.ready();
         if ( this.icon === undefined ) {
-          this.shadowRoot.querySelector("iron-icon").style.display = "none";
+          this.$.icon.style.display = "none";
+        }
+        this.$.icon.addEventListener("click", e => this._clickLink(e));
+      }
+
+      _clickLink(e) {
+        let a = this.querySelector('a');
+        if ( a && a.hasAttribute('href') ) {
+          a.click();
         }
       }
+
     }
     customElements.define(CasperMenuItem.is, CasperMenuItem);
   </script>
