@@ -1,4 +1,4 @@
-<!--
+/*
   - Copyright (c) 2018 Cloudware S.A. All rights reserved.
   -
   - This file is part of casper-context-all.
@@ -16,25 +16,21 @@
   - You should have received a copy of the GNU Affero General Public License
   - along with casper-context-all.  If not, see <http://www.gnu.org/licenses/>.
   -
- -->
+ */
 
-<link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="casper-context-menu.html">
-<link rel="import" href="casper-context-menu-light.html">
-<link rel="import" href="casper-menu-list.html">
-<link rel="import" href="casper-simple-select.html">
-<link rel="import" href="casper-optgroup-select.html">
-<link rel="import" href="casper-context-select.html">
+import './casper-menu-list.js';
+import './casper-context-menu.js';
+import './casper-simple-select.js';
+import './casper-context-select.js';
+import './casper-optgroup-select.js';
+import './casper-context-menu-light.js';
 
-<dom-module id="casper-context-all">
-  <script>
-  	class CasperContextAll extends Polymer.Element {
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 
-  		static get is () {
-  			return 'casper-context-all';
-  		}
+class CasperContextAll extends PolymerElement {
 
-		}
-		customElements.define(CasperContextAll.is, CasperContextAll);
-  </script>
-</dom-module>
+  static get is () {
+		return 'casper-context-all';
+  }
+}
+customElements.define(CasperContextAll.is, CasperContextAll);

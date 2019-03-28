@@ -1,4 +1,4 @@
-<!--
+/*
   - Copyright (c) 2018 Cloudware S.A. All rights reserved.
   -
   - This file is part of casper-context-menu.
@@ -16,17 +16,14 @@
   - You should have received a copy of the GNU Affero General Public License
   - along with casper-context-menu.  If not, see <http://www.gnu.org/licenses/>.
   -
- -->
-<link rel="import" href="../polymer/polymer-element.html">
+ */
 
-<dom-module id="casper-simple-select">
-  <template>
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+
+class CasperSimpleSelect extends Polymer.Element {
+  static get template() {
+    return html`
     <style>
-
-      :host {
-
-      }
-
       iron-icon {
         /* background-color: green; */
       }
@@ -64,49 +61,44 @@
       }
     </style>
 
-    <span id="inner_box" >
+    <span id="inner_box">
       <a id="slot_text" href="[[href]]" data-level="[[level]]"><slot></slot></a>
       <iron-icon icon="toc-icons:expand-more">icon</iron-icon>
-      <casper-context-menu id="select_options" no-overlap vertical-align="auto" horizontal-align="auto">
+      <casper-context-menu id="select_options" no-overlap="" vertical-align="auto" horizontal-align="auto">
         <template is="dom-repeat" items="[[items]]" index-as="index">
           <casper-menu-list on-click="customclick">
-            <a data-level="3" href="[[item.link]]" data-remote$="[[item.remote]]">[[item.title]]</a>
+            <a data-level="3" href="[[item.link]]" data-remote\$="[[item.remote]]">[[item.title]]</a>
           </casper-menu-list>
         </template>
       </casper-context-menu>
     </span>
-  </template>
+`;
+  }
 
-  <script>
+  static get is () {
+    return 'casper-simple-select';
+  }
 
-    class CasperSimpleSelect extends Polymer.mixinBehaviors([], Polymer.Element) {
-      static get is () {
-        return 'casper-simple-select';
-      }
-
-      static get properties () {
-        return {
-        }
-      }
-
-      customclick(e){
-        var level = Number(e.target.getAttribute("data-level"));
-        var text = e.target.text;
-        this.innerText = text;
-        this.$.select_options.close();
-
-        this.app.$.main_menu.label_3_link = e.target.href;
-      }
-
-      ready () {
-        super.ready();
-        this.$.slot_text.addEventListener('click',     e => this.$.select_options.open());
-        this.$.inner_box.addEventListener('mouseover', e => this.$.select_options.open());
-        this.$.inner_box.addEventListener('mouseout',  e => this.$.select_options.close());
-      }
-
+  static get properties () {
+    return {
     }
+  }
 
-    window.customElements.define(CasperSimpleSelect.is, CasperSimpleSelect);
-  </script>
-</dom-module>
+  customclick(e){
+    var level = Number(e.target.getAttribute("data-level"));
+    var text = e.target.text;
+    this.innerText = text;
+    this.$.select_options.close();
+
+    this.app.$.main_menu.label_3_link = e.target.href;
+  }
+
+  ready () {
+    super.ready();
+    this.$.slot_text.addEventListener('click',     e => this.$.select_options.open());
+    this.$.inner_box.addEventListener('mouseover', e => this.$.select_options.open());
+    this.$.inner_box.addEventListener('mouseout',  e => this.$.select_options.close());
+  }
+}
+
+window.customElements.define(CasperSimpleSelect.is, CasperSimpleSelect);
