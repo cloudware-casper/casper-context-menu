@@ -18,6 +18,7 @@
   -
  */
 
+import '@casper2020/casper-common-ui/casper-overlay.js';
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
 class CasperContextSelect extends PolymerElement {
