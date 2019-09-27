@@ -59,6 +59,25 @@ class CasperSimpleSelect extends PolymerElement {
         display: inline-block;
         padding-right: 0px;
       }
+
+      casper-menu-list a[data-label]::after {
+        content: attr(data-label);
+        text-transform: uppercase;
+        margin-left: 5px;
+        font-size: 9px;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 3px 3px;
+        display: inline;
+        border-radius: 2px;
+      }
+
+
+      casper-menu-list a:hover[data-label]::after{
+        color: var(--primary-color);
+        background: white;
+      }
+
     </style>
 
     <span id="inner_box">
@@ -67,7 +86,7 @@ class CasperSimpleSelect extends PolymerElement {
       <casper-context-menu id="select_options" no-overlap="" vertical-align="auto" horizontal-align="auto">
         <template is="dom-repeat" items="[[items]]" index-as="index">
           <casper-menu-list on-click="customclick">
-            <a data-level="3" href="[[item.link]]" data-remote\$="[[item.remote]]">[[item.title]]</a>
+            <a data-level="3" href="[[item.link]]" data-label$="[[item.label]]" data-remote$="[[item.remote]]">[[item.title]]</a> 
           </casper-menu-list>
         </template>
       </casper-context-menu>
