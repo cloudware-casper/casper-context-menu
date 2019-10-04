@@ -86,7 +86,7 @@ class CasperSimpleSelect extends PolymerElement {
       <casper-context-menu id="select_options" no-overlap="" vertical-align="auto" horizontal-align="auto">
         <template is="dom-repeat" items="[[items]]" index-as="index">
           <casper-menu-list on-click="customclick">
-            <a data-level="3" href="[[item.link]]" data-label$="[[item.label]]" data-remote$="[[item.remote]]">[[item.title]]</a> 
+            <a data-level="3" href="[[item.link]]" data-wizard$="[[item.data_wizard]]" data-wizard-options$="[[item.data_wizard_options]]"  data-label$="[[item.label]]" data-remote$="[[item.remote]]">[[item.title]]</a> 
           </casper-menu-list>
         </template>
       </casper-context-menu>
