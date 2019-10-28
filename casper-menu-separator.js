@@ -19,6 +19,7 @@
  */
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 class CasperMenuSeparator extends PolymerElement {
   static get template() {
@@ -43,6 +44,10 @@ class CasperMenuSeparator extends PolymerElement {
           font-weight: bold;
         }
 
+        .inner.empty {
+          padding: 2px 12px 0px 12px;
+        }
+
         paper-listbox {
           /* color: var(--primary-text-color, gray); */
           border-radius: var(--radius-primary, 6px);
@@ -51,13 +56,25 @@ class CasperMenuSeparator extends PolymerElement {
       </style>
 
 
-      <div class="inner"><slot>---</slot></div>
+      <div class="inner"><slot></slot></div>
     `;
   }
 
   static get is () {
     return 'casper-menu-separator';
   }
+
+  ready () {
+    super.ready();
+
+    afterNextRender(this, () => {
+      if (this.shadowRoot.querySelector('slot:not([name])').assignedNodes().length === 0) {
+        this.shadowRoot.querySelector(".inner").classList.add("empty");
+      }
+    });
+
+  }
+
 }
 
 customElements.define(CasperMenuSeparator.is, CasperMenuSeparator);
