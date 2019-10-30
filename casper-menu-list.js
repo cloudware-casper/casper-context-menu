@@ -35,7 +35,7 @@ class CasperMenuList extends PolymerElement {
         ::slotted(a) {
           width: 100%;
           padding: 6px 12px 6px 12px;
-          color: var(--dark-primary-color);
+          color: var(--primary-color);
           /* background: grey; */
         }
 
@@ -50,7 +50,7 @@ class CasperMenuList extends PolymerElement {
 
         :host(:hover), :host(:hover) ::slotted(a) {
           color: white;
-          background-color: var(--dark-primary-color);
+          background-color: var(--primary-color);
         }
 
         /* :host(:hover) > a {

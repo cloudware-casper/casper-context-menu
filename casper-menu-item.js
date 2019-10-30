@@ -36,7 +36,7 @@ class CasperMenuItem extends PolymerElement {
         }
 
         :host(:hover) {
-          background-color: var(--dark-primary-color);
+          background-color: var(--primary-color);
           color: white;
         }
 
@@ -99,10 +99,13 @@ class CasperMenuItem extends PolymerElement {
     if ( this.icon === undefined ) {
       this.$.icon.style.display = "none";
     }
-    this.$.icon.addEventListener("click", e => this._clickLink(e));
+    this.addEventListener("click", e => this._clickLink(e));
   }
 
-  _clickLink(e) {
+  _clickLink(event) {
+
+    if (event.composedPath().some(element => element.nodeName && element.nodeName.toLowerCase() === 'a')) return;
+
     let a = this.querySelector('a');
     if ( a && a.hasAttribute('href') ) {
       a.click();
