@@ -18,8 +18,10 @@
   -
  */
 
+import '@casper2020/casper-icons/casper-icon.js';
 import '@polymer/iron-icon/iron-icon.js';
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 class CasperMenuItem extends PolymerElement {
   static get template() {
@@ -29,8 +31,8 @@ class CasperMenuItem extends PolymerElement {
           display: flex;
           align-items: center;
           font-size: 13px;
-          padding: 6px 12px 6px 12px;
-          margin: 0px;
+          padding: 6px 12px;
+          margin: 0;
           font-weight: normal;
           cursor: pointer;
         }
@@ -58,9 +60,16 @@ class CasperMenuItem extends PolymerElement {
         }
 
         iron-icon {
-          --iron-icon-height: 18px;
-          --iron-icon-width:  18px;
-          padding-right: 3px;
+          width: 18px;
+          height: 18px;
+          margin-right: 5px;
+        }
+
+        casper-icon {
+          width: 15px;
+          height: 15px;
+          margin-right: 5px;
+          --casper-icon-fill-color: rgb(58, 58, 58);
         }
 
         ::slotted(a) {
@@ -68,19 +77,20 @@ class CasperMenuItem extends PolymerElement {
           text-decoration: none;
         }
 
-        ::slotted(a):hover {
-          text-decoration: none;
-        }
-
+        ::slotted(a):hover,
         ::slotted(a):visited {
           text-decoration: none;
         }
-
-
       </style>
-      <iron-icon id="icon" icon="[[icon]]"></iron-icon>
+      <template is="dom-if" if="[[!useNewIconset]]">
+        <iron-icon id="icon" icon="[[icon]]"></iron-icon>
+      </template>
+
+      <template is="dom-if" if="[[useNewIconset]]">
+        <casper-icon id="icon" icon="[[icon]]"></casper-icon>
+      </template>
       <slot></slot>
-  `;
+    `;
   }
 
   static get is () {
@@ -90,25 +100,34 @@ class CasperMenuItem extends PolymerElement {
   static get properties () {
     return {
       /** icon name */
-      icon: String
+      icon: String,
+      useNewIconset: {
+        type: Boolean,
+        value: false
+      }
     };
   }
 
   ready () {
     super.ready();
-    if ( this.icon === undefined ) {
-      this.$.icon.style.display = "none";
+
+    if (!this.icon) {
+      afterNextRender(this, () => {
+        this.useNewIconset
+          ? this.shadowRoot.querySelector('casper-icon').style.display = 'none'
+          : this.shadowRoot.querySelector('iron-icon').style.display = 'none';
+      });
     }
-    this.addEventListener("click", e => this._clickLink(e));
+
+    this.addEventListener('click', event => this.__clickLink(event));
   }
 
-  _clickLink(event) {
-
+  __clickLink(event) {
     if (event.composedPath().some(element => element.nodeName && element.nodeName.toLowerCase() === 'a')) return;
 
-    let a = this.querySelector('a');
-    if ( a && a.hasAttribute('href') ) {
-      a.click();
+    const anchor = this.querySelector('a');
+    if (anchor && anchor.hasAttribute('href')) {
+      anchor.click();
     }
   }
 }
