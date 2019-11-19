@@ -65,11 +65,15 @@ class CasperMenuItem extends PolymerElement {
           margin-right: 5px;
         }
 
-        casper-icon {
+        :host casper-icon {
           width: 15px;
           height: 15px;
           margin-right: 5px;
           --casper-icon-fill-color: rgb(58, 58, 58);
+        }
+
+        :host(:hover) casper-icon {
+          --casper-icon-fill-color: white;
         }
 
         ::slotted(a) {
