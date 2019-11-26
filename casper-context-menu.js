@@ -31,10 +31,12 @@ class CasperContextMenu extends mixinBehaviors([IronOverlayBehavior, IronFitBeha
     return html`
       <style>
         :host {
+          overflow: hidden;
           background: var(--primary-background-color, white);
           border-radius: var(--radius-primary, 6px);
-          box-shadow: rgba(0, 0, 0, 0.24) -2px 5px 12px 0px, rgba(0, 0, 0, 0.12) 0px 0px 12px 0px;
-          overflow: hidden;
+          box-shadow: rgba(0, 0, 0, 0.24) -2px 5px 12px 0px,
+                      rgba(0, 0, 0, 0.12) 0px 0px 12px 0px;
+
         }
 
         paper-listbox {
@@ -59,6 +61,27 @@ class CasperContextMenu extends mixinBehaviors([IronOverlayBehavior, IronFitBeha
   ready () {
     super.ready();
     this.addEventListener('click', (e) => this._onTap(e));
+
+    this.addEventListener('mouseenter', () => {
+      this.style.transition = '';
+      this.style.opacity = 1;
+      clearTimeout(this.__animationTimeout);
+      clearTimeout(this.__animationDelayTimeout);
+    });
+
+    const animationDuration = 500;
+    this.addEventListener('mouseleave', () => {
+      // Delay the beginning of the animation.
+      this.__animationDelayTimeout = setTimeout(() => {
+        this.style.transition = `opacity ${animationDuration}ms linear`;
+        this.style.opacity = 0;
+
+        this.__animationTimeout = setTimeout(() => {
+          this.close();
+          this.style.opacity = 1;
+        }, animationDuration);
+      }, animationDuration);
+    });
   }
 
   /**
