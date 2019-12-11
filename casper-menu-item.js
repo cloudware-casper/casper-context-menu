@@ -72,6 +72,10 @@ class CasperMenuItem extends PolymerElement {
           --casper-icon-fill-color: rgb(58, 58, 58);
         }
 
+        :host([disabled]) casper-icon {
+          --casper-icon-fill-color: #ccc;
+        }
+
         :host(:hover) casper-icon {
           --casper-icon-fill-color: white;
         }
