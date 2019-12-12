@@ -108,7 +108,10 @@ class CasperMenuItem extends PolymerElement {
   static get properties () {
     return {
       /** icon name */
-      icon: String,
+      icon: {
+        type: String,
+        observer: '__iconChanged'
+      },
       useNewIconset: {
         type: Boolean,
         value: false
@@ -118,16 +121,15 @@ class CasperMenuItem extends PolymerElement {
 
   ready () {
     super.ready();
-
-    if (!this.icon) {
-      afterNextRender(this, () => {
-        this.useNewIconset
-          ? this.shadowRoot.querySelector('casper-icon').style.display = 'none'
-          : this.shadowRoot.querySelector('iron-icon').style.display = 'none';
-      });
-    }
-
     this.addEventListener('click', event => this.__clickLink(event));
+  }
+
+  __iconChanged () {
+    afterNextRender(this, () => {
+      this.useNewIconset
+        ? this.shadowRoot.querySelector('casper-icon').style.display = this.icon ? 'block' : 'none'
+        : this.shadowRoot.querySelector('iron-icon').style.display = this.icon ? 'block' : 'none';
+    });
   }
 
   __clickLink(event) {
