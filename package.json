@@ -22,14 +22,14 @@
   "author": "Cloudware S.A.",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
-    "@polymer/iron-component-page": "^4.0.0",
-    "@polymer/iron-fit-behavior": "^3.0.1",
-    "@polymer/iron-icon": "^3.0.0",
-    "@polymer/iron-icons": "^3.0.0",
-    "@polymer/iron-overlay-behavior": "^3.0.0",
-    "@polymer/paper-button": "^3.0.0",
-    "@polymer/paper-listbox": "^3.0.0",
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/iron-component-page": "^4.x",
+    "@polymer/iron-fit-behavior": "^3.x",
+    "@polymer/iron-icon": "^3.x",
+    "@polymer/iron-icons": "^3.x",
+    "@polymer/iron-overlay-behavior": "^3.x",
+    "@polymer/paper-button": "^3.x",
+    "@polymer/paper-listbox": "^3.x",
+    "@polymer/polymer": "^3.x"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0",
