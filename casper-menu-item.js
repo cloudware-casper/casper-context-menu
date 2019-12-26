@@ -24,7 +24,7 @@ import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 class CasperMenuItem extends PolymerElement {
-  static get template() {
+  static get template () {
     return html`
       <style>
         :host {
@@ -69,15 +69,15 @@ class CasperMenuItem extends PolymerElement {
           width: 15px;
           height: 15px;
           margin-right: 5px;
-          --casper-icon-fill-color: rgb(58, 58, 58);
+          color: rgb(58, 58, 58);
         }
 
         :host([disabled]) casper-icon {
-          --casper-icon-fill-color: #ccc;
+          color: #ccc;
         }
 
         :host(:hover) casper-icon {
-          --casper-icon-fill-color: white;
+          color: white;
         }
 
         ::slotted(a) {
@@ -132,7 +132,7 @@ class CasperMenuItem extends PolymerElement {
     });
   }
 
-  __clickLink(event) {
+  __clickLink (event) {
     if (event.composedPath().some(element => element.nodeName && element.nodeName.toLowerCase() === 'a')) return;
 
     const anchor = this.querySelector('a');
