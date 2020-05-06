@@ -6,12 +6,11 @@
     "menu",
     "context"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:casper2020/casper-context-menu.git"
-  },
-  "name": "@casper2020/casper-context-menu",
+  "name": "@cloudware-casper/casper-context-menu",
   "version": "1.6.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
