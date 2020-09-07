@@ -90,13 +90,7 @@ class CasperMenuItem extends PolymerElement {
           text-decoration: none;
         }
       </style>
-      <template is="dom-if" if="[[!useNewIconset]]">
-        <iron-icon id="icon" icon="[[icon]]"></iron-icon>
-      </template>
-
-      <template is="dom-if" if="[[useNewIconset]]">
-        <casper-icon id="icon" icon="[[icon]]"></casper-icon>
-      </template>
+      <casper-icon id="icon" icon="[[icon]]"></casper-icon>
       <slot></slot>
     `;
   }
@@ -111,10 +105,6 @@ class CasperMenuItem extends PolymerElement {
       icon: {
         type: String,
         observer: '__iconChanged'
-      },
-      useNewIconset: {
-        type: Boolean,
-        value: false
       }
     };
   }
@@ -126,9 +116,7 @@ class CasperMenuItem extends PolymerElement {
 
   __iconChanged () {
     afterNextRender(this, () => {
-      this.useNewIconset
-        ? this.shadowRoot.querySelector('casper-icon').style.display = this.icon ? 'block' : 'none'
-        : this.shadowRoot.querySelector('iron-icon').style.display = this.icon ? 'block' : 'none';
+      this.shadowRoot.querySelector('casper-icon').style.display = this.icon ? 'block' : 'none';
     });
   }
 
