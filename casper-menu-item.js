@@ -19,7 +19,6 @@
  */
 
 import '@cloudware-casper/casper-icons/casper-icon.js';
-import '@polymer/iron-icon/iron-icon.js';
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
