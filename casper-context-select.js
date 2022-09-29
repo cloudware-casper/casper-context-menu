@@ -50,6 +50,10 @@ class CasperContextSelect extends PolymerElement {
           /* display: flex; */
         }
 
+        casper-overlay {
+          overflow: hidden
+        }
+
       </style>
 
       <div id="trigger">
